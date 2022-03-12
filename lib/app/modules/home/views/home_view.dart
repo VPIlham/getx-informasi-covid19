@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:getx_covid/app/themes/style.dart';
 import 'package:intl/intl.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:skeletons/skeletons.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -60,15 +61,137 @@ class HomeView extends GetView<HomeController> {
                     future: controller.getData(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(
-                          child: CircularProgressIndicator(),
+                        return SkeletonItem(
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  SkeletonAvatar(
+                                    style: SkeletonAvatarStyle(
+                                        shape: BoxShape.circle,
+                                        width: 50,
+                                        height: 50),
+                                  ),
+                                  SizedBox(width: 8),
+                                  Expanded(
+                                    child: SkeletonParagraph(
+                                      style: SkeletonParagraphStyle(
+                                          lines: 3,
+                                          spacing: 6,
+                                          lineStyle: SkeletonLineStyle(
+                                            randomLength: true,
+                                            height: 10,
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            minLength: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                6,
+                                            maxLength: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                3,
+                                          )),
+                                    ),
+                                  ),
+                                  SkeletonAvatar(
+                                    style: SkeletonAvatarStyle(
+                                        shape: BoxShape.circle,
+                                        width: 50,
+                                        height: 50),
+                                  ),
+                                  SizedBox(width: 8),
+                                  Expanded(
+                                    child: SkeletonParagraph(
+                                      style: SkeletonParagraphStyle(
+                                          lines: 3,
+                                          spacing: 6,
+                                          lineStyle: SkeletonLineStyle(
+                                            randomLength: true,
+                                            height: 10,
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            minLength: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                6,
+                                            maxLength: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                3,
+                                          )),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  SkeletonAvatar(
+                                    style: SkeletonAvatarStyle(
+                                        shape: BoxShape.circle,
+                                        width: 50,
+                                        height: 50),
+                                  ),
+                                  SizedBox(width: 8),
+                                  Expanded(
+                                    child: SkeletonParagraph(
+                                      style: SkeletonParagraphStyle(
+                                          lines: 3,
+                                          spacing: 6,
+                                          lineStyle: SkeletonLineStyle(
+                                            randomLength: true,
+                                            height: 10,
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            minLength: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                6,
+                                            maxLength: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                3,
+                                          )),
+                                    ),
+                                  ),
+                                  SkeletonAvatar(
+                                    style: SkeletonAvatarStyle(
+                                        shape: BoxShape.circle,
+                                        width: 50,
+                                        height: 50),
+                                  ),
+                                  SizedBox(width: 8),
+                                  Expanded(
+                                    child: SkeletonParagraph(
+                                      style: SkeletonParagraphStyle(
+                                          lines: 3,
+                                          spacing: 6,
+                                          lineStyle: SkeletonLineStyle(
+                                            randomLength: true,
+                                            height: 10,
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            minLength: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                6,
+                                            maxLength: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                3,
+                                          )),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         );
                       }
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // controller.dataPenambahan["tanggal"].toString()
                           Text(
                             " ${dateFormat.format(DateTime.parse(controller.dataPenambahan["created"].toString()))} ${dateFormatJam.format(DateTime.parse(controller.dataPenambahan["created"].toString()))}",
                             style: subtitleTextStyle,
@@ -228,7 +351,7 @@ class HomeView extends GetView<HomeController> {
                                                 controller.dataPenambahan[
                                                             "jumlah_dirawat"] <
                                                         0
-                                                    ? "${formatter.format(controller.dataPenambahan["jumlah_dirawat"])} (-)"
+                                                    ? "${formatter.format(controller.dataPenambahan["jumlah_dirawat"])}"
                                                     : "${formatter.format(controller.dataPenambahan["jumlah_dirawat"])} (+)",
                                                 style: smallKasusTextStyle,
                                               )
@@ -302,11 +425,47 @@ class HomeView extends GetView<HomeController> {
                 ),
                 //Provinsi
                 FutureBuilder(
-                  future: controller.getData(),
+                  future: controller.getDataProvinsi(),
                   builder: (_, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(
-                        child: CircularProgressIndicator(),
+                      return SkeletonItem(
+                        child: Column(
+                          children: [
+                            for (var i = 0; i < 10; i++)
+                              Row(
+                                children: [
+                                  SkeletonAvatar(
+                                    style: SkeletonAvatarStyle(
+                                        shape: BoxShape.circle,
+                                        width: 50,
+                                        height: 50),
+                                  ),
+                                  SizedBox(width: 8),
+                                  Expanded(
+                                    child: SkeletonParagraph(
+                                      style: SkeletonParagraphStyle(
+                                          lines: 3,
+                                          spacing: 6,
+                                          lineStyle: SkeletonLineStyle(
+                                            randomLength: true,
+                                            height: 10,
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            minLength: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                6,
+                                            maxLength: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                3,
+                                          )),
+                                    ),
+                                  )
+                                ],
+                              ),
+                          ],
+                        ),
                       );
                     }
                     return SingleChildScrollView(

@@ -18,6 +18,8 @@ class HomeController extends GetxController {
 
     if (currentIndex == 0) {
       Get.toNamed(Routes.HOME);
+    } else if (currentIndex == 1) {
+      Get.toNamed(Routes.VAKSINASI);
     } else if (currentIndex == 2) {
       Get.toNamed(Routes.ABOUT);
     }
@@ -33,7 +35,6 @@ class HomeController extends GetxController {
       dataTotal = data["update"]["total"];
       dataPenambahan = data["update"]["penambahan"];
       print('Total ${dataTotal["jumlah_positif"]}');
-      print('Penambahan ${dataPenambahan}');
     } else {
       print('Request failed with status: ${response.statusCode}.');
     }
@@ -57,7 +58,6 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getDataProvinsi();
   }
 
   @override
@@ -66,5 +66,16 @@ class HomeController extends GetxController {
   }
 
   @override
-  void onClose() {}
+  void onClose() {
+    getData();
+    getDataProvinsi();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    getData();
+    getDataProvinsi();
+  }
 }
